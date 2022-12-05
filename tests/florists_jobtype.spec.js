@@ -61,12 +61,12 @@ test("Verify the rate page appearance for the Florist job type", async ({page,})
   const coteriePgTitle = page.locator('#form > div')
   await expect(coteriePgTitle).toHaveText('Additional Questions', {timeout: 10000})
   await page.getByRole('button', { name: 'Continue' }).click();
-  // // Hiscox
-  // await page.getByRole('button', { name: 'County' }).click();
-  // await page.getByRole('listbox', { name: 'County' }).getByText('Dallas county').click();
-  // await page.getByRole('group', { name: 'Is your business operated out of your home?' }).getByText('No').click();
-  // await page.getByRole('group', { name: 'Does your business provide any of the following operations, goods, or services? Auto, boat, or utility vehicle parts and dealers Convenience stores Department stores Farming or gardening supply stores Auto repair or gas stations Health food, vitamin, or drug stores Grocery stores Pet or pet supply stores Restaurants, bars, or nightclubs Alcohol, tobacco, electronic cigarette, or vapor stores Gun, firearm, or ammunition stores' }).getByText('No').click();
-  // await page.getByRole('button', { name: 'Continue' }).click();
+  //Hiscox
+  await page.getByLabel('Approximately when did your business begin?').type('20220105');
+  await page.getByRole('group', { name: 'Is your business operated out of your home?' }).getByText('No').click();
+  await page.getByRole('group', { name: 'Does your business provide any of the following operations, goods, or services? Auto, boat, or utility vehicle parts and dealers Convenience stores Department stores Farming or gardening supply stores Auto repair or gas stations Health food, vitamin, or drug stores Grocery stores Pet or pet supply stores Restaurants, bars, or nightclubs Alcohol, tobacco, electronic cigarette, or vapor stores Gun, firearm, or ammunition stores' }).getByText('No').click();
+  await page.getByRole('button', { name: 'Continue' }).click();
+  // //Liberty Mutual
   // await page.getByText('No').click();
   // await page.getByRole('button', { name: 'Continue' }).click();
   // await page.getByRole('group', { name: 'In the past three years, have you had any business insurance cancelled or non-renewed by your insurance company, other than for non-payment of premium?' }).locator('label').filter({ hasText: 'No' }).locator('span').click();
