@@ -70,20 +70,19 @@ test("Verify the rate page appearance for the Florist job type", async ({page,})
   await page.getByRole('button', { name: 'Continue' }).click();
   //Liberty Mutual
   await page.getByRole('group', { name: 'Have there been losses for the lines of business submitted?' }).getByText('No').click();
-  // await page.getByText('No').click();
   await page.getByRole('button', { name: 'Continue' }).click();
-  // //Nationwide
-  // await page.getByRole('group', { name: 'In the past three years, have you had any business insurance cancelled or non-renewed by your insurance company, other than for non-payment of premium?' }).locator('label').filter({ hasText: 'No' }).locator('span').click();
-  // await page.getByRole('group', { name: 'Has your business operated without insurance for 6 months or more since the business started?' }).getByText('No').click();
-  // await page.getByRole('button', { name: 'How long has your business had General Liability insurance?' }).click();
-  // await page.getByText('0 years').click();
-  // await page.getByRole('group', { name: 'Does your business require certificates of insurance from sub-contractors?' }).getByText('No').click();
-  // await page.getByRole('group', { name: 'Does your business require all sub-contractors to carry liability limits equal to yours?' }).getByText('No').click();
-  // await page.getByRole('group', { name: 'Does your business require written contracts with all sub-contractors?' }).getByText('No').click();
-  // await page.getByRole('button', { name: 'Continue' }).click();
-  // //Quote page
-  // const quotePageHeadline = page.getByLabel('We found you some options');
-  // await expect(quotePageHeadline).toHaveText('We found you some options');
+  //Nationwide
+  await page.getByRole('group', { name: 'In the past three years, have you had any business insurance cancelled or non-renewed by your insurance company, other than for non-payment of premium?' }).locator('label').filter({ hasText: 'No' }).locator('span').click();
+  await page.getByRole('group', { name: 'Has your business operated without insurance for 6 months or more since the business started?' }).getByText('No').click();
+  await page.getByRole('button', { name: 'How long has your business had General Liability insurance?' }).click();
+  await page.getByText('0 years').click();
+  await page.getByRole('group', { name: 'Does your business require certificates of insurance from sub-contractors?' }).getByText('No').click();
+  await page.getByRole('group', { name: 'Does your business require all sub-contractors to carry liability limits equal to yours?' }).getByText('No').click();
+  await page.getByRole('group', { name: 'Does your business require written contracts with all sub-contractors?' }).getByText('No').click();
+  await page.getByRole('button', { name: 'Continue' }).click();
+  //Quote page
+  const quotePageHeadline = page.getByLabel('We found you some options');
+  await expect(quotePageHeadline).toHaveText('We found you some options');
 });
 
 //Functions
