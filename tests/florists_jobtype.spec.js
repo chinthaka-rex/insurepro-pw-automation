@@ -62,6 +62,8 @@ test("Verify the rate page appearance for the Florist job type", async ({page,})
   await expect(coteriePgTitle).toHaveText('Additional Questions', {timeout: 10000})
   await page.getByRole('button', { name: 'Continue' }).click();
   //Hiscox
+  const hiscoxPgTitle = page.locator('#form > div')
+  await expect(hiscoxPgTitle).toHaveText('Hiscox has some additional questions for you', {timeout: 10000})
   await page.getByLabel('Approximately when did your business begin?').type('01052022');
   await page.getByRole('group', { name: 'Is your business operated out of your home?' }).getByText('No').click();
   await page.getByRole('group', { name: 'Does your business provide any of the following operations, goods, or services?' }).getByText('No').click();
@@ -69,9 +71,13 @@ test("Verify the rate page appearance for the Florist job type", async ({page,})
   await page.getByText('Agree').nth(2).click();
   await page.getByRole('button', { name: 'Continue' }).click();
   //Liberty Mutual
+  const libertyMutualPgTitle = page.locator('#form > div')
+  await expect(libertyMutualPgTitle).toHaveText('Liberty Mutual has some additional questions for you', {timeout: 10000})
   await page.getByRole('group', { name: 'Have there been losses for the lines of business submitted?' }).getByText('No').click();
   await page.getByRole('button', { name: 'Continue' }).click();
   //Nationwide
+  const nationwidePgTitle = page.locator('#form > div')
+  await expect(nationwidePgTitle).toHaveText('Nationwide has some additional questions for you', {timeout: 10000})
   await page.getByRole('group', { name: 'In the past three years, have you had any business insurance cancelled or non-renewed by your insurance company, other than for non-payment of premium?' }).locator('label').filter({ hasText: 'No' }).locator('span').click();
   await page.getByRole('group', { name: 'Has your business operated without insurance for 6 months or more since the business started?' }).getByText('No').click();
   await page.getByRole('button', { name: 'How long has your business had General Liability insurance?' }).click();
