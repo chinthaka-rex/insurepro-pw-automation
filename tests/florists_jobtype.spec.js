@@ -1,17 +1,19 @@
 import { test, expect } from "@playwright/test";
 
-test("Verify the rate page appearance for the florist job type", async ({
-  page,
-}) => {
+test.beforeEach(async ({ page }) => {
   await page.goto("https://app.qa.insurepro.com/");
+  //Landing page
   await page.getByRole("button", { name: "Get a Quote" }).click();
+  //Why are you looking for insurance page
   await page.getByText("I need it for my business").click();
   await page.getByRole("button", { name: "Continue" }).click();
+  //Features page
   await page.getByRole("button", { name: "Mobile App" }).click();
   await page.getByRole("button", { name: "Cancel Anytime" }).click();
   await page.getByRole("button", { name: "VIEW ALL FEATURES" }).click();
   await page.getByRole("button", { name: "Phone Support" }).click();
   await page.getByRole("button", { name: "Continue" }).click();
+  //General Information
   await page.getByRole("textbox", { name: "Policyholder's First Name" }).fill("qacwauto001 a");
   await page.getByRole("textbox", { name: "Policyholder's Last Name" }).fill("qacwauto001 b");
   await page.getByPlaceholder("(###) ###-####").type("5623489563");
@@ -24,32 +26,44 @@ test("Verify the rate page appearance for the florist job type", async ({
   await page.getByRole("textbox", { name: "Zipcode" }).fill("78625");
   await page.waitForTimeout(10000)
   await page.getByRole("button", { name: "Continue" }).click();
+});
+
+test("Verify the rate page appearance for the Florist job type", async ({page,}) => {
+  //What is your profession page
   await page.getByLabel("Business Type").click();
   await page.getByLabel("Business Type").type("florists");
   await page.getByRole("button", { name: "Florists" }).click();
   await page.getByRole("button", { name: "Continue" }).click();
+  //Coverage Type page
   await page.getByRole("button", { name: "Coverage Type ▾" }).click();
   await page.getByRole('option', { name: 'General Liability' }).locator('label').click();
   await page.getByRole("button", { name: "Coverage Type ▾" }).click();
   await page.getByRole("button", { name: "Continue" }).click();
+  //Business Information page
   await page.getByRole('textbox', { name: 'Founding Year of Business' }).click();
   await page.getByRole('textbox', { name: 'Founding Year of Business' }).fill('2000');
   await page.getByRole('button', { name: 'Legal Entity Type' }).click();
   await page.getByText('Sole Proprietorship').click();
   await page.getByRole('button', { name: 'Continue' }).click();
-  await page.getByRole('textbox', { name: 'Estimated gross revenue' }).type('$5000');
-  await page.getByRole('textbox', { name: 'Business owner(s) only What is your estimated payroll for the next 12 months?' }).type('$2000');
-  await page.getByRole('textbox', { name: '1099 contractors What is your estimated payroll for the next 12 months?' }).type('$1000');
-  await page.waitForSelector("button", { name: "Continue" })
+  //Business Operations page
+  await page.getByRole('textbox', { name: 'Estimated gross revenue' }).type('5000');
+  await page.getByRole('textbox', { name: 'Business owner(s) only What is your estimated payroll for the next 12 months?' }).type('2000');
+  await page.getByRole('textbox', { name: '1099 contractors What is your estimated payroll for the next 12 months?' }).type('1000');
+  const bizOprPgConBtn = page.getByRole('button', { name: 'CONTINUE' });
+  await expect(bizOprPgConBtn).toHaveText('chevron-right', {timeout: 5000})
   await page.getByRole('button', { name: 'Continue' }).click();
-  await page.waitForSelector('button', { name: 'Policy start date'})
+  //Additional Information page
+  const startPgTitle = page.locator('#form > div')
+  await expect(startPgTitle).toHaveText('Additional Information', {timeout: 10000})
+  await page.getByLabel('Policy start date').type(todayIs());
   await page.getByRole('button', { name: 'Continue' }).click();
-
-  await page.waitForSelector()
+  //Coterie
+  const coteriePgTitle = page.locator('#form > div')
+  await expect(coteriePgTitle).toHaveText('Additional Details', {timeout: 10000})
   await page.getByRole('button', { name: 'Continue' }).click();
-
-  await page.getByRole('button', { name: 'County' }).click();
-  await page.getByRole('listbox', { name: 'County' }).getByText('Dallas county').click();
+  // // Hiscox
+  // await page.getByRole('button', { name: 'County' }).click();
+  // await page.getByRole('listbox', { name: 'County' }).getByText('Dallas county').click();
   // await page.getByRole('group', { name: 'Is your business operated out of your home?' }).getByText('No').click();
   // await page.getByRole('group', { name: 'Does your business provide any of the following operations, goods, or services? Auto, boat, or utility vehicle parts and dealers Convenience stores Department stores Farming or gardening supply stores Auto repair or gas stations Health food, vitamin, or drug stores Grocery stores Pet or pet supply stores Restaurants, bars, or nightclubs Alcohol, tobacco, electronic cigarette, or vapor stores Gun, firearm, or ammunition stores' }).getByText('No').click();
   // await page.getByRole('button', { name: 'Continue' }).click();
@@ -66,3 +80,19 @@ test("Verify the rate page appearance for the florist job type", async ({
   // const quotePageHeadline = page.getByLabel('We found you some options');
   // await expect(quotePageHeadline).toHaveText('We found you some options');
 });
+
+//Functions
+
+function todayIs() {
+  var d = new Date(),
+      month = '' + (d.getMonth() + 1),
+      day = '' + d.getDate(),
+      year = d.getFullYear();
+
+  if (month.length < 2) 
+      month = '0' + month;
+  if (day.length < 2) 
+      day = '0' + day;
+
+  return [year, month, day].join('');
+}
