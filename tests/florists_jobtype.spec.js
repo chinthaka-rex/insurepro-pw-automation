@@ -77,7 +77,7 @@ test("Verify the rate page appearance for the Florist job type", async ({page,})
   await page.getByRole('button', { name: 'Continue' }).click();
   //Nationwide
   const nationwidePgTitle = page.locator('#form > div')
-  await expect(nationwidePgTitle).toHaveText('Nationwide has some additional questions for you', {timeout: 10000})
+  await expect(nationwidePgTitle).toHaveText('Nationwide has some additional questions for you')
   await page.getByRole('group', { name: 'In the past three years, have you had any business insurance cancelled or non-renewed by your insurance company, other than for non-payment of premium?' }).locator('label').filter({ hasText: 'No' }).locator('span').click();
   await page.getByRole('group', { name: 'Has your business operated without insurance for 6 months or more since the business started?' }).getByText('No').click();
   await page.getByRole('button', { name: 'How long has your business had General Liability insurance?' }).click();
