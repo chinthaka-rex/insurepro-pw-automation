@@ -16,7 +16,7 @@ const config = {
   testDir: './tests',
   // testDir: './tests-examples',
   /* Maximum time one test can run for. */
-  timeout: 50 * 1000,
+  timeout: 10 * 1000,
   expect: {
     /**
      * Maximum time expect() should wait for the condition to be met.
@@ -29,7 +29,7 @@ const config = {
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
-  retries: process.env.CI ? 4 : 0,
+  retries: process.env.CI ? 5 : 0,
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
