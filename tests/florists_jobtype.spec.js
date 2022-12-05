@@ -64,11 +64,13 @@ test("Verify the rate page appearance for the Florist job type", async ({page,})
   //Hiscox
   await page.getByLabel('Approximately when did your business begin?').type('01052022');
   await page.getByRole('group', { name: 'Is your business operated out of your home?' }).getByText('No').click();
-  await page.getByRole('group', { name: 'Doe' }).getByText('No').click();
-  // await page.getByRole('group', { name: 'Does your business provide any of the following operations, goods, or services? Auto, boat, or utility vehicle parts and dealers Convenience stores Department stores Farming or gardening supply stores Auto repair or gas stations Health food, vitamin, or drug stores Grocery stores Pet or pet supply stores Restaurants, bars, or nightclubs Alcohol, tobacco, electronic cigarette, or vapor stores Gun, firearm, or ammunition stores' }).getByText('No').click();
+  await page.getByRole('group', { name: 'Does your business provide any of the following operations, goods, or services?' }).getByText('No').click();
+  await page.getByRole('button', { name: 'Your business does not conduct any of the following activities: Automotive repair or sales Food service/restaurant operations Medical services' }).click();
+  await page.getByText('Agree').nth(2).click();
   await page.getByRole('button', { name: 'Continue' }).click();
   //Liberty Mutual
-  await page.getByText('No').click();
+  await page.getByRole('group', { name: 'Have there been losses for the lines of business submitted?' }).getByText('No').click();
+  // await page.getByText('No').click();
   await page.getByRole('button', { name: 'Continue' }).click();
   // //Nationwide
   // await page.getByRole('group', { name: 'In the past three years, have you had any business insurance cancelled or non-renewed by your insurance company, other than for non-payment of premium?' }).locator('label').filter({ hasText: 'No' }).locator('span').click();
