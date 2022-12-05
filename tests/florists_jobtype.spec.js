@@ -59,7 +59,7 @@ test("Verify the rate page appearance for the Florist job type", async ({page,})
   await page.getByRole('button', { name: 'Continue' }).click();
   //Coterie
   const coteriePgTitle = page.locator('#form > div')
-  await expect(coteriePgTitle).toHaveText('Additional Details', {timeout: 10000})
+  await expect(coteriePgTitle).toHaveText('Additional Questions', {timeout: 10000})
   await page.getByRole('button', { name: 'Continue' }).click();
   // // Hiscox
   // await page.getByRole('button', { name: 'County' }).click();
