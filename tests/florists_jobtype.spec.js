@@ -50,20 +50,20 @@ test("Verify the rate page appearance for the Florist job type", async ({page,})
   await page.getByRole('textbox', { name: 'Business owner(s) only What is your estimated payroll for the next 12 months?' }).type('2000');
   await page.getByRole('textbox', { name: '1099 contractors What is your estimated payroll for the next 12 months?' }).type('1000');
   const bizOprPgConBtn = page.getByRole('button', { name: 'CONTINUE' });
-  await expect(bizOprPgConBtn).toHaveText('chevron-right', {timeout: 5000})
+  await expect(bizOprPgConBtn).toHaveText('chevron-right')
   await page.getByRole('button', { name: 'Continue' }).click();
   //Additional Information page
   const startPgTitle = page.locator('#form > div')
-  await expect(startPgTitle).toHaveText('Additional Information', {timeout: 10000})
+  await expect(startPgTitle).toHaveText('Additional Information')
   await page.getByLabel('Policy start date').type(todayIs());
   await page.getByRole('button', { name: 'Continue' }).click();
   //Coterie
   const coteriePgTitle = page.locator('#form > div')
-  await expect(coteriePgTitle).toHaveText('Additional Questions', {timeout: 10000})
+  await expect(coteriePgTitle).toHaveText('Additional Questions')
   await page.getByRole('button', { name: 'Continue' }).click();
   //Hiscox
   const hiscoxPgTitle = page.locator('#form > div')
-  await expect(hiscoxPgTitle).toHaveText('Hiscox has some additional questions for you', {timeout: 10000})
+  await expect(hiscoxPgTitle).toHaveText('Hiscox has some additional questions for you')
   await page.getByLabel('Approximately when did your business begin?').type('01052022');
   await page.getByRole('group', { name: 'Is your business operated out of your home?' }).getByText('No').click();
   await page.getByRole('group', { name: 'Does your business provide any of the following operations, goods, or services?' }).getByText('No').click();
@@ -72,7 +72,7 @@ test("Verify the rate page appearance for the Florist job type", async ({page,})
   await page.getByRole('button', { name: 'Continue' }).click();
   //Liberty Mutual
   const libertyMutualPgTitle = page.locator('#form > div')
-  await expect(libertyMutualPgTitle).toHaveText('Liberty Mutual has some additional questions for you', {timeout: 10000})
+  await expect(libertyMutualPgTitle).toHaveText('Liberty Mutual has some additional questions for you')
   await page.getByRole('group', { name: 'Have there been losses for the lines of business submitted?' }).getByText('No').click();
   await page.getByRole('button', { name: 'Continue' }).click();
   //Nationwide
