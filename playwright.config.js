@@ -1,5 +1,5 @@
 // @ts-check
-const { devices } = require('@playwright/test');
+import { devices } from '@playwright/test';
 
 /**
  * Read environment variables from file.
@@ -16,7 +16,7 @@ const config = {
   testDir: './tests',
   // testDir: './tests-examples',
   /* Maximum time one test can run for. */
-  timeout: 100 * 1000,
+  timeout: 50 * 1000,
   expect: {
     /**
      * Maximum time expect() should wait for the condition to be met.
@@ -111,4 +111,4 @@ const config = {
   // },
 };
 
-module.exports = config;
+export default config;
